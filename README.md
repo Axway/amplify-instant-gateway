@@ -180,8 +180,8 @@ When you and your stakeholders are happy with the content on your Netlify micros
 
 This involves:
 
-1. Adding a new link for your documentation to the home page (`content/en/_index.html`) of the main [Axway Open Documentation](https://axway-open-docs.netlify.app/) site
-2. Adding redirects to the `netlify.toml` file in the main site to redirect clicks on the new link for your documentation to your microsite
+1. Adding a new link for your documentation to the home page (`content/en/_index.html`) of the main [Axway Open Documentation](https://axway-open-docs.netlify.app/) site.
+2. Adding redirects to the `netlify.toml` file in the main site to redirect clicks on the new link for your documentation to your microsite.
 
 Redirects must be added to the `netlify.toml` file in [Axway Open Docs repo](https://github.com/Axway/axway-open-docs). You might need redirect for each of the following:
 
