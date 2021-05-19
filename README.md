@@ -298,7 +298,7 @@ Some common options include:
 
 You must add the appropriate users as maintainers of the GitHub repo under **Settings > Manage access**. Users must have write access as a minimum to review and approve pull requests. It is best to have at least two maintainers.
 
-Next, modify the CODEOWNERS (`.github/CODEOWNERS`) file with the appropriate users. This automates who gets added as reviewers in pull requests. You can globally add all maintainers as codeowners or opt for specific owners for specific files or directories as shown in the file comments.
+Next, modify the CODEOWNERS (`.github/CODEOWNERS`) file with the appropriate users. This automates who gets added as reviewers in pull requests. You can globally add all maintainers as codeowners or opt for specific owners for specific files or directories as shown in the file comments
 
 #### Pull request and issue templates
 
