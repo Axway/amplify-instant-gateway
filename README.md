@@ -305,7 +305,7 @@ Next, modify the CODEOWNERS (`.github/CODEOWNERS`) file with the appropriate use
 It is best to modify the following templates to suit your project:
 
 * Pull request template (`.github/pull_request_template.md`) - This template is used when a contributor creates a PR on GitHub. It is not used by Netlify CMS. 
-* Issue templates (`.github/ISSUE_TEMPLATE/documentation-issue-template.md` and `.github/ISSUE_TEMPLATE/website-issue-template.md`) - These are used when a contributor creates a GitHub issue.
+* Issue templates (`.github/ISSUE_TEMPLATE/documentation-issue-template.md` and `.github/ISSUE_TEMPLATE/website-issue-template.md`) - These are used when a contributor creates a GitHub issue
 
 ### Update the microsite repo README.md
 
