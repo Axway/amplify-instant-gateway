@@ -1,16 +1,27 @@
 ---
-title: "Documentation"
+title: "Welcome to Amplify Gateway Documentation"
 linkTitle: "Documentation"
 weight: 20
+no_list: true
 menu:
   main:
     weight: 20
 ---
 
-{{% pageinfo %}}
-This is a placeholder page that shows you how to use this template site.
-{{% /pageinfo %}}
+*placeholder* - This section is where the user documentation for your project lives - all the information your users need to understand and successfully use your project.
 
-This section is where the user documentation for your project lives - all the information your users need to understand and successfully use your project.
+## Overview
 
-For large documentation sets we recommend adding content under the headings in this section, though if some or all of them don’t apply to your project feel free to remove them or add your own.
+Axway Amplify Gateway *placeholder*
+
+For more information, use the navigation menu on the left to browse all documentation. You can also search for specific terms using the search field in the top right corner of any page.
+
+Here are some suggestions to get started:
+
+* Install and upgrade
+* Administer
+* Release notes
+
+## Get started
+
+placeholder
