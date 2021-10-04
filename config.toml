@@ -156,3 +156,4 @@ enable = true
 	url = "https://marketplace.axway.com/"
 	icon = "fas fa-cart-arrow-down"
         desc = "Download assets from Axway Marketplace"
+theme = "docsy"
