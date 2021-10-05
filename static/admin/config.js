@@ -1,7 +1,7 @@
 /**
  * Docs page collections require the following minimal dataset:
  *   name: [string] used in routes, ie.: /admin/collections/:slug/edit
- *   label: [string] used in CMS UI left nav
+ *   label: [string] used in CMS UI lefft nav
  *   label_singular: [string] used in CMS UI, ie.: 'New Post'
  *   description: [string] used in CMS UI
  */
@@ -67,13 +67,13 @@ const config = {
   backend: {
     name: 'github',
     branch: cms_branch,
-    repo: 'Axway/amplifygateway', // Path to your GitHub repository.
+    repo: 'Axway/amplify-gateway', // Path to your GitHub repository.
     open_authoring: true,
   },
   publish_mode: 'editorial_workflow',
   media_folder: '/static/Images', // Media files will be stored in the repo under static/Images
   public_folder: '/Images', // The src attribute for uploaded media will begin with /Images
-  site_url: 'https://amplifygateway.netlify.com/', // URL to netlify site
+  site_url: 'https://amplify-gateway.netlify.com/', // URL to netlify site
   collections,
 };
 
