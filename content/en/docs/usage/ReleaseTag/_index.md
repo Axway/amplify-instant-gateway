@@ -8,21 +8,17 @@ description: >
   Release Tag a Virtual API to create a Virtual API Release.
 ---
 
-{{< alert title="Note" color="primary" >}}Windows is supported only for a limited set of developer tools, see [Install developer tools on Windows](/docs/apim_installation/apigtw_install/install_dev_tools). API Gateway and API Manager do not support Windows.{{< /alert >}}
+A release tag is used to create a versioned snapshot of the virtual api (i.e. v1.0.1) at a given point in time. This snapshot is known as a Virtual API Release. The Release Tag is used to manage the Virtual API Release throughout its lifecycle.
 
 ## Prerequisites
 
-* You have downloaded the installation setup file for your target operating.
+* You have created a Virtual API as outlined in [Create Virtual API](/docs/usage/Create/index.html).
+* You have applied whatever governance rules you requires as outlined in [Apply Governance Rules](/docs/usage/GovRules/index.html).
 
-## Installation modes
+## Release Tag a Virtual API
 
-The API Gateway installer has the following installation modes:
+### Via the Amplify Management APIs
 
-* GUI mode
-* Unattended command-line mode
+### Via Axway CLI
 
-## Installation options
-
-When you run the installation setup file it launches in GUI mode by default. The following sections detail the installation options in GUI mode.
-
-## placeholder
+### Via UI

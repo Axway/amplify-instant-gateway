@@ -8,21 +8,25 @@ description: >
   Deploy a Virtual API to an Amplify Gateway environment.
 ---
 
-{{< alert title="Note" color="primary" >}}Windows is supported only for a limited set of developer tools, see [Install developer tools on Windows](/docs/apim_installation/apigtw_install/install_dev_tools). API Gateway and API Manager do not support Windows.{{< /alert >}}
+A deployment of a given Virtual API release to a given Environment so that the virtual api can be called via the Amplify Gateway running in that environment. 
 
 ## Prerequisites
 
-* You have downloaded the installation setup file for your target operating.
+* You have created a Virtual API Release as outlined in [Release Tag a Virtual API](/docs/usage/ReleaseTag/index.html).
+* You have installed the Amplify Gateway as outlined in [Install Amplify Gateway](/docs/install/index.html) and you have access to the Environment in which the Amplify Gateway is running. 
 
-## Installation modes
+## Deploying a Virtual API Release to Amplify Gateway
 
-The API Gateway installer has the following installation modes:
+### Via the Amplify Management APIs
 
-* GUI mode
-* Unattended command-line mode
+### Via Axway CLI
 
-## Installation options
+### Via UI
 
-When you run the installation setup file it launches in GUI mode by default. The following sections detail the installation options in GUI mode.
+## Undeploying a Virtual API Release from Amplify Gateway
 
-## placeholder
+### Via the Amplify Management APIs
+
+### Via Axway CLI
+
+### Via UI
