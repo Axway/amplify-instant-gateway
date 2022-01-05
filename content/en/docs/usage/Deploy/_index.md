@@ -13,20 +13,103 @@ A deployment of a given Virtual API release to a given Environment so that the v
 ## Prerequisites
 
 * You have created a Virtual API Release as outlined in [Release Tag a Virtual API](/docs/usage/ReleaseTag/index.html).
-* You have installed the Amplify Gateway as outlined in [Install Amplify Gateway](/docs/install/index.html) and you have access to the Environment in which the Amplify Gateway is running. 
+* You have installed Amplify Gateway as outlined in [Install Amplify Gateway](/docs/install/index.html) and you have access to the Environment in which the Amplify Gateway is running. 
 
 ## Deploying a Virtual API Release to Amplify Gateway
 
 ### Via the Amplify Management APIs
 
+To deploy a Virtual API release to an Amplify Gateway Environment via API call the following end-point
+
+    POST /management/v1alpha1/environments/{environmentName}/deployments
+
+where {environmentName} is the name of the Amplify Gateway dataplane environment that you are deploying to. If the followng json payload is provided then provided then this will trigger a request to the data plane to deploy the Virtual API release. 
+
+```json
+{
+    "group": "management",
+    "apiVersion": "v1alpha1",
+    "kind": "Deployment",
+    "name": "music-deploy",
+    "title": "Music - Deployment of release 0.1.0",
+    "spec": {
+        "virtualHost": "music.ampgw.com",
+        "virtualAPIRelease": "music-0.1.0"
+    }
+}
+```
+In this example, the specification:
+
+* Specifies the Virtual API Release to deploy.
+* Describes the virtual host to use to call the API. A virtual host is mandatory. The end-point to use to call the API depends on the environment to which it is deployed. 
+
+The above API call will only request that the API is deployed to the data plane. While the deployment is waiting to be picked up by the data plane, it's status will be 'Pending'. Once it has been deployed sucessfully to the data plane, it's status will become 'Success'. To confirm the deployment status call the following API
+
+    GET /management/v1alpha1/environments/{environmentName}/deployments/{deploymentName}
+
 ### Via Axway CLI
 
+To deploy a Virtual API release to an Amplify Gateway Environment via CLI, log on the Axway Central CLI and run the following command
+
+    axway central create -f music-deployment.yaml
+
+A yaml file called music-deployment.yaml should exist on the file system with the following contents. Executing this command with the yaml file contents will trigger a request to the data plane to deploy the Virtual API release to the specified environment.
+
+```yaml
+apiVersion: v1alpha1
+group: management
+kind: Deployment
+name: music-deploy
+title: Music - Deployment of release 0.1.0
+metadata:
+  scope:
+    kind: Environment
+    name: amplify-gateway-env
+spec:
+  virtualAPIRelease: music-0.1.0
+  virtualHost: music.ampgw.com
+```
+In this example, the specification:
+
+* Specifies the Virtual API Release to deploy.
+* Describes the virtual host to use to call the API. A virtual host is mandatory. The end-point to use to call the API depends on the environment to which it is deployed. 
+
+The above CLI command will only request that the API is deployed to the data plane. While the deployment is waiting to be picked up by the data plane, it's status will be 'Pending'. Once it has been deployed sucessfully to the data plane, it's status will become 'Success'. To confirm the deployment status use the following CLI command
+
+    axway central get deployments -s <environmentName> 
+
 ### Via UI
+
+Login to the platfrom, navigate to Central, select 'Virtual APIs' from the left hand navigation window. Select the Virtual API to deploy from the list. Click the Deploy button and select the Virtual API Release to deploy from the list. Enter the Virtual host to call the Virtual API on.
+
+Please Note: if no Virtual API releases exist, create one as described in  [Release Tag a Virtual API via UI](/docs/usage/ReleaseTag/index.html).
 
 ## Undeploying a Virtual API Release from Amplify Gateway
 
 ### Via the Amplify Management APIs
 
+To undeploy or remove a Virtual API Release that is currently running on an Amplify Gateway Environment via API, call the following end-point
+
+    DELETE /management/v1alpha1/environments/{environmentName}/deployments/{deploymentName}
+
+where {environmentName} is the name of the Amplify Gateway dataplane environment that the Virtual API is currently running on and {deploymentName} is the name of the deployment. 
+
+The above API call will only request that the API is undeployed from the data plane. While the request is waiting to be picked up by the data plane, the deployment status will be 'Pending'. Once it has been sucessfully undeployed from the data plane, the deployment resource will be removed and no longer show up in the list of deployments in the environment. To confirm the deployment status call the following API
+
+    GET /management/v1alpha1/environments/{environmentName}/deployments/{deploymentName}
+
 ### Via Axway CLI
 
+To undeploy or remove a Virtual API Release that is currently running on an Amplify Gateway Environment via CLI, log on the Axway Central CLI and run the following command
+
+    axway central delete deployments <deploymentName> -s <environmentName>
+
+where <environmentName> is the name of the Amplify Gateway dataplane environment that the Virtual API is currently running on and <deploymentName> is the name of the deployment.
+
+The above CLI command will only request that the API is undeployed from the data plane. While the request is waiting to be picked up by the data plane, the deployment status will be 'Pending'. Once it has been sucessfully undeployed from the data plane, the deployment resource will be removed and no longer show up in the list of deployments in the environment. To confirm the deployment status use the following CLI command
+
+    axway central get deployments -s <environmentName>   
+
 ### Via UI
+
+It is currently not possible to undeploy a Virtual API via the UI.
