@@ -7,6 +7,4 @@ hide_readingtime: true
 description: Learn how to use Amplify Gateway to manage your APIs.
 ---
 
-## Managing Virtual APIs
-
 In this section, you will learn how to:

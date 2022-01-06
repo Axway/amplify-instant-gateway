@@ -7,6 +7,4 @@ hide_readingtime: true
 description: Install Amplify Gateway.
 ---
 
-There are several ways to install Amplify Gateway as outlined below
-
-## Installation Options
+In this section, you will learn about the various different ways of installing and running Amplify Gateway:
