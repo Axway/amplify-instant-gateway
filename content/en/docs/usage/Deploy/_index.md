@@ -8,7 +8,7 @@ description: >
   Deploy a Virtual API to an Amplify Gateway environment.
 ---
 
-A deployment of a given Virtual API release to a given Environment so that the virtual api can be called via the Amplify Gateway running in that environment. 
+A Virtual API Release can be deployed to a specified Amplify Gateway environment so that the virtual api can be called via the Amplify Gateway dataplane running in that environment. It is also possible to undeploy or remove a Virtual API Release from an Amplify Gateway environment. 
 
 ## Prerequisites
 

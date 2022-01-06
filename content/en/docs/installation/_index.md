@@ -1,18 +1,12 @@
 ---
 title: Install Amplify Gateway
 linkTitle: Install Amplify Gateway
-weight: 20
+weight: 10
 date: 2021-07-26
 hide_readingtime: true
-description: Install Amplify Gateway on-premise, or deploy in containers, and learn how to upgrade an existing installation.
+description: Install Amplify Gateway.
 ---
 
-This is your text placeholder
+There are several ways to install Amplify Gateway as outlined below
 
-## placeholder
-
-We might need to create new menu items for the different options:
-
-* Install
-* Install in containers
-* Upgrade
+## Installation Options

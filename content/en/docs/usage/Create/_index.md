@@ -8,7 +8,7 @@ description: >
   Create a Virtual API with or without an OAS specification.
 ---
 
-A Virtual API is a container for API which can be invoked through the Amplify Gateway and which will route requests to backend service(s). A Virtual API may be created from an initial backend specification (such as an OAS document) OR it may be manually populated where no backend specification exists.
+A Virtual API is a representation of an API which can be invoked through Amplify Gateway which will route requests to the backend service. A Virtual API may be created from an initial backend specification (such as an OAS document) OR it may be manually populated where no backend specification exists.
 
 ## Prerequisites
 
@@ -613,9 +613,9 @@ If the followng json payload is provided then a new Virtual API called 'my-api' 
 
 However, this virutal API cannot be used as is. When an OAS specification is provided, then the path routes are parsed directly from the OAS specification. Where no OAS specification is provided, this information needs to be provided by calling another API to create another resource called a Virtual Service. 
 
-    POST /apis/management/v1alpha1/virtualapis/{virtualapi}/virtualservices
+    POST /apis/management/v1alpha1/virtualapis/{virtualapiName}/virtualservices
 
-where {virtualapi} is the name of the api created by calling the previous end-point. The following json payload should be included
+where {virtualapiName} is the name of the api created by calling the previous end-point. The following json payload should be included
 
 ```json
 {

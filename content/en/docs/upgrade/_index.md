@@ -1,7 +1,7 @@
 ---
 title: Upgrade Amplify Gateway
 linkTitle: Upgrade Amplify Gateway
-weight: 10
+weight: 40
 date: 2021-07-26
 hide_readingtime: true
 description: >
