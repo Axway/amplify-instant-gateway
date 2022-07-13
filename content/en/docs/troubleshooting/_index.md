@@ -14,3 +14,5 @@ The troubleshooting section includes details about issues you may come across du
 When a Virtual API is deployed in error and a status message of **Deployment Failed** is shown in the Deployments tab of the Virtual API Screen, then this is usually caused by a misconfiguration in the data plane or the governance plane. 
 
 A regularly observered misconfiguration is a secret that is expected by one of the Virtual APIs and that is not present in the secret store. Be sure to check that all required secrets for all deployed APIs are present. Even if a secret is not used by the Virtual API that you are deploying, you could still see this error if the missing secret is expected by an already deployed Virtual API.
+
+If the problem is not caused by a missing secret, then it is advisable to check the logs of the governance agent: kubectl logs --follow <GOVERNANCE AGENT POD NAME>
