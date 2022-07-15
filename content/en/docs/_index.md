@@ -51,4 +51,4 @@ The Instant Gateway consists out of 2 core components:
   * **Threat Protection:** Protect your backend from attacks and unwanted traffic. The instant gateway offers advanced rate limiting capabilities to protect your backend from DDoS attacks.
   * **Other security mechanisms:** Beside the AuthN/AuthZ and threat protection mechanism mentioned above, the Instant Gateway provides additional capabilities such as CORS (Cross Origin Resource Sharing), TLS, and certificate verification.
   * **Usage and Metrics tracking:** Usage and metrics can be tracked through the governance plane and the data plane communicates with the governance plane to provide the usage and metrics.
-  * **Support for multiple protocols:** REST, HTTP 1.1/2.0, OAS3 (3.0.1, 3.0.2), GraphQL and gRPC.
+  * **Support for multiple protocols:** REST, HTTP 1.1, HTTP 2.0, OAS3 (3.0.1, 3.0.2), GraphQL and gRPC.
