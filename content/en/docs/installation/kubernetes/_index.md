@@ -1,6 +1,6 @@
 ---
 title: Install Amplify Gateway into a Kubernetes Cluster
-linkTitle: Kubernetes
+linkTitle: Install into Kubernetes cluster
 weight: 10
 date: 2022-01-06
 hide_readingtime: true
@@ -10,52 +10,72 @@ description: Install Amplify Gateway into a Kubernetes Cluster.
 ## Prerequisites
 
 * You have an organisation provisioned on the Amplify Platform.
-* You have created a service account in your organisation
 * You have installed Helm
-* You have installed a Kubernetes Cluster. If running on a laptop, Docker Desktop, Minikube, Rancher Desktop or K3s may be used. If installing into a cloud based cluster, AWS EKS or Azure AKS may be used. 
+* You have installed a Kubernetes Cluster. If running on a laptop, Docker Desktop, Minikube, Rancher Desktop or K3s may be used. If installing into a cloud based cluster, AWS EKS or Azure AKS may be used.
 
-## Set up the Helm repository
+## Set up Service Accounts
 
-To create the Helm repository run the following commands
+Two service accounts will be required to install Amplify Instant Gatway:
 
-```
-helm repo add ampc-rel https://artifactory-phx.ecd.axway.int/artifactory/ampc-helm-release
-helm repo update
-```
+* Service Account used by Helm install to download docker images. See [Creating Service Account for downloading docker images](/docs/installation/dockerservacct/index.html).
+* Service Account used by the governance agent to communicate with the Amplify plaform. See [Creating Service Account for Governance Agent](/docs/installation/govagentservacct/index.html)
 
-To seach for the latest releases in the helm repository, run the following command
+Service accounts may be set up via CLI or UI
 
-```
-helm search repo ampgw
-```
-
-## Install Amplify Gateway
-
-### Create the Kubernetes cluster
-
-### Create the required Kubernetes secret
+## Create the required Kubernetes secret
 
 Amplify Gateway requires a specific secret in order to run. This secret must be named 'ampgw-secret' and should contain the following:
 
 * Your organization id
-* Your service account client id in that organization
-* The public and private keys of your service account.
+* The client id of the service account used by the governance agent to communicate with the Amplify Platform
+* The public and private keys of this service account
 * A TLS certificate and private key which can be used to create virtual hosts on which to your APIs on Amplify Gateway
 
-
-
-
-```
+```markdown
 kubectl -- create secret generic ampgw-secret \
     --from-file serviceAccPrivateKey=private_key.pem \
     --from-file serviceAccPublicKey=public_key.pem \
     --from-file listenerPrivateKey=listener_private_key.pem  \
     --from-file listenerCertificate=listener_certificate.pem \
-    --from-literal orgId=929039818019890 \
-    --from-literal clientId=<service account client id>
+    --from-literal orgId=<ORG_ID> \
+    --from-literal clientId=<SERVICE_ACCOUNT_CLIENT_ID>
 ```
 
-### Customizing the Amplify Gateway Installation
+## Create the Kubernetes secret to allow access to Docker images
+
+Helm requires access to the docker repository in order to download docker images. To enable this access you must create another kubernetes secret. This secret must be named 'regcred' and should contain the following:
+
+* Your organization id
+* The client id of the service account used to access the docker repository
+* The client secret of this service account.
+
+```markdown
+kubectl create secret docker-registry regcred --docker-server=docker.repository.axway.com --docker-username=<SERVICE_ACCOUNT_CLIENT_ID> --docker-password=<CLIENT_SECRET>
+```
+
+## Set up the Helm repository
+
+To configure the helm repository run the following command. The service account client id and client secret to use are the ones created in the [Creating Service Account for downloading docker images](/docs/installation/setupDockerRepoServAcct/index.html) section.
+
+```markdown
+helm repo add Axway https://helm.repository.axway.com --username=<SERVICE_ACCOUNT_CLIENT_ID> --password=<CLIENT_SECRET>
+```
+
+Update the repo index to make sure you have access to the latest charts
+
+```markdown
+helm repo update
+```
+
+To seach for the latest releases in the helm repository, run the following command
+
+```markdown
+helm search repo ampgw
+```
+
+## Install Amplify Gateway
+
+## Customizing the Amplify Gateway Installation
 
 By default, if you run the helm install with no customization, AMplify Gateway will apply the following defaults:
 
@@ -113,27 +133,25 @@ ampgw-proxy:
 
 The following command will install the latest released version of Amplify Gateway
 
-```
+```markdown
 helm install ampgw ampc-rel/ampgw
 ```
 
 If you want to customize your install, create an override yaml file, as outlined in the previous section, and run the install as follows
 
-```
+```markdown
 helm install ampgw ampc-rel/ampgw -f override.yaml
 ```
 
 ### Check whats running
 
-```
+```markdown
 kubectl get pods
 kubectl describe pods <pod-name>
 ```
 
 ### Check the logs
 
-```
+```markdown
 kubectl -- logs --follow <pod-name>
 ```
-
-

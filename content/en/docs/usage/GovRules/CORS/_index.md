@@ -8,7 +8,7 @@ description: >
   Configure CORS rule for a Virtual API.
 ---
 
-<CORS Description>
+CORS Description
 
 ## Prerequisites
 

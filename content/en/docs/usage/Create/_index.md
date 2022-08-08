@@ -335,6 +335,7 @@ If the followng json payload is provided then a new Virtual API called 'music' w
     }
 }
 ```
+
 In this example, the specification:
 
 * Indicates that the Virtual API being created is a REST API.
@@ -345,7 +346,9 @@ In this example, the specification:
 
 To create a virtual API via CLI, log on the Axway Central CLI and run the following command
 
-    axway central create -f music.yaml
+```markdown
+axway central create -f music.yaml
+```
 
 A yaml file called music.yaml should exist on the file system with the following contents. Executing this command with the yaml file contents will create a new Virtual API called 'music' with the title 'Musical Instruments'
 
@@ -570,12 +573,12 @@ spec:
                   type: string
                   description: The price currency.
 ```
+
 In this example, the specification:
 
 * Indicates that the Virtual API being created is a REST API.
 * Provides a short description of what the API does.
 * Provides the OAS 3 specification for the API. This specifcation will be parsed to create the paths that the gateway can route to. It will also be used to create a specification to be consumed by client application developers when the API is exposed via Amplify Gateway.
-
 
 ### Via UI
 
@@ -595,19 +598,19 @@ If the followng json payload is provided then a new Virtual API called 'my-api' 
 
 ```json
 {
-	"group": "management",
-	"apiVersion": "v1alpha1",
-	"kind": "VirtualAPI",
-	"name": "music",
-	"title": "Musical Instruments",
-	"tags": [
-		"music",
-		"axway"
-	],
-	"spec": {
-		"type": "REST",
-		"description": "A Sample Musical Instruments API"
-	}
+  "group": "management",
+  "apiVersion": "v1alpha1",
+  "kind": "VirtualAPI",
+  "name": "music",
+  "title": "Musical Instruments",
+  "tags": [
+    "music",
+    "axway"
+  ],
+  "spec": {
+    "type": "REST",
+    "description": "A Sample Musical Instruments API"
+  }
 }
 ```
 
@@ -661,6 +664,7 @@ where {virtualapiName} is the name of the api created by calling the previous en
     }
 }
 ```
+
 In this example:
 
 * The codec is set to 'AUTO' meaning that the gateway will negotiate with the backend service over how to communicate. If the backend can communicate over HTTP2 that protocol will be used by the gateway, otherwise the gateway will revert to communicating over HTTP1.1
@@ -716,19 +720,18 @@ spec:
           method: GET
   prefix: /music/v2
 ```
+
 In this example:
 
 * The codec is set to 'AUTO' meaning that the gateway will negotiate with the backend service over how to communicate. If the backend can communicate over HTTP2 that protocol will be used by the gateway, otherwise the gateway will revert to communicating over HTTP1.1
 * 'musicalinstruments.axway.com' is the backend host server and '443' is the port. The backend can be called over https protocol. 
 * The prefix to call the backend service is '/music/v2'.
-* The backend api supports 3 operations - 
+* The backend api supports 3 operations -
   * GET /instruments
   * GET /instruments/{id}
   * GET /instruments/query
 * The prefix to call the Virtual API through the gateway is 'music/v2'.
 
-
 ### Via UI
 
-It is not possible to create a Virtual API with no OAS specification via the UI. 
-
+It is not possible to create a Virtual API with no OAS specification via the UI.
