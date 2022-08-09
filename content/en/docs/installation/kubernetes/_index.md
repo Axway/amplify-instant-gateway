@@ -22,35 +22,35 @@ Two service accounts will be required to install Amplify Instant Gatway:
 
 Service accounts may be set up via CLI or UI
 
-## Create the required Kubernetes secret
+## Create the Kubernetes secret to allow access to Docker images
 
-Amplify Gateway requires a specific secret in order to run. This secret must be named 'ampgw-secret' and should contain the following:
+Helm requires access to the docker repository in order to download docker images. To enable this access you must create another kubernetes secret. This secret must be named 'regcred' and should contain the following:
 
 * Your organization id
-* The client id of the service account used by the governance agent to communicate with the Amplify Platform
-* The public and private keys of this service account
-* A TLS certificate and private key which can be used to create virtual hosts on which to your APIs on Amplify Gateway
+* The client id of the service account used to access the docker repository. See [Creating Service Account for downloading docker images](/docs/installation/dockerservacct/index.html).
+* The client secret of this service account.
 
 ```markdown
-kubectl -- create secret generic ampgw-secret \
+kubectl create secret docker-registry regcred --docker-server=docker.repository.axway.com --docker-username=<SERVICE_ACCOUNT_CLIENT_ID> --docker-password=<CLIENT_SECRET>
+```
+
+## Create the Kubernetes secret to allow governance agent to communicate with Amplify Platform
+
+Amplify Gateway requires a specific secret in order to run. This secret must be named 'ampgw-secret' and should contain the following information
+
+* Your organization id
+* The client id of the service account used by the governance agent to communicate with the Amplify Platform. See [Creating Service Account for Governance Agent](/docs/installation/govagentservacct/index.html)
+* The public and private keys of this service account
+* A TLS certificate and private key which can be used to create virtual hosts on which to deploy APIs on Amplify Instant Gateway
+
+```markdown
+kubectl create secret generic ampgw-secret \
     --from-file serviceAccPrivateKey=private_key.pem \
     --from-file serviceAccPublicKey=public_key.pem \
     --from-file listenerPrivateKey=listener_private_key.pem  \
     --from-file listenerCertificate=listener_certificate.pem \
     --from-literal orgId=<ORG_ID> \
     --from-literal clientId=<SERVICE_ACCOUNT_CLIENT_ID>
-```
-
-## Create the Kubernetes secret to allow access to Docker images
-
-Helm requires access to the docker repository in order to download docker images. To enable this access you must create another kubernetes secret. This secret must be named 'regcred' and should contain the following:
-
-* Your organization id
-* The client id of the service account used to access the docker repository
-* The client secret of this service account.
-
-```markdown
-kubectl create secret docker-registry regcred --docker-server=docker.repository.axway.com --docker-username=<SERVICE_ACCOUNT_CLIENT_ID> --docker-password=<CLIENT_SECRET>
 ```
 
 ## Set up the Helm repository
@@ -75,6 +75,20 @@ helm search repo ampgw
 
 ## Install Amplify Gateway
 
+To install the latest Amplify Instant Gateway
+
+```markdown
+helm install ampgw Axway/amplifygateway-helm-prod-ampgw
+```
+
+To install a customized version of Amplify Instant Gateway
+
+```markdown
+helm install ampgw Axway/amplifygateway-helm-prod-ampgw -f override.yaml
+```
+
+To understand how to customize your install, please see the next section
+
 ## Customizing the Amplify Gateway Installation
 
 By default, if you run the helm install with no customization, AMplify Gateway will apply the following defaults:
@@ -91,7 +105,7 @@ The following is an example of the custom override file which applies the follow
 * Turn off redaction for traceability data
 * Set log levels to debug for the agents and envoy
 * Use a custom external secret name
-* Add a list of virtual hosts to bootstrap
+* Add a list of virtual hosts to bootstrap the install. This means that virtual hosts doe not have to be configured before deploying an API.
 
 ```yaml
 global:
@@ -129,20 +143,6 @@ ampgw-proxy:
     LOGLEVEL: debug
 ```
 
-### Run the Helm install
-
-The following command will install the latest released version of Amplify Gateway
-
-```markdown
-helm install ampgw ampc-rel/ampgw
-```
-
-If you want to customize your install, create an override yaml file, as outlined in the previous section, and run the install as follows
-
-```markdown
-helm install ampgw ampc-rel/ampgw -f override.yaml
-```
-
 ### Check whats running
 
 ```markdown
@@ -153,5 +153,5 @@ kubectl describe pods <pod-name>
 ### Check the logs
 
 ```markdown
-kubectl -- logs --follow <pod-name>
+kubectl logs --follow <pod-name>
 ```

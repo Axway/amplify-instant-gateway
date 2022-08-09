@@ -127,4 +127,4 @@ To test HTTP settings, release and deploy the Virtual API as outlined in [Releas
 
 ## Via UI
 
-HTTP Settings cannot be configured via the UI currently.
+HTTP settings can be configured via the Backend tab of the Virtual API details screen.

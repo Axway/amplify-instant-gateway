@@ -8,7 +8,7 @@ description: >
   Configure API Key Security for a Virtual API.
 ---
 
-To specify that the Virtual API is to be secured via API key, the user must configure an API Key Auth rule and update the Virtual Service to use that Auth Rule.
+To specify that the Virtual API is to be secured via API key, the user must configure an API Key Authentication rule and update the Virtual Service to use that rule.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ To configure an API Key auth rule via API, call the following end-point
 POST /management/v1alpha1/virtualapis/{virtualapiName}/apikeyauthrules
 ```
 
-where {virtualapiName} is the name of the Virtual API you wish to configure the API Key auth rule for. If the following json payload is provided then an API Key Auth rule will be created.
+where {virtualapiName} is the name of the Virtual API you wish to configure the API Key authentication rule for. If the following json payload is provided then an API Key rule will be created.
 
 ```json
 {
@@ -40,8 +40,8 @@ where {virtualapiName} is the name of the Virtual API you wish to configure the 
 
 In this example, the specification:
 
-* Indicates that the api key will be located in a header named 'my-api-key'. Please Note: Amplify Gateway only supports providing API Keys as a header at the moment.
-* A Description of the API Key auth rule. 
+* Indicates that the api key will be located in a header named 'my-api-key'. *Please Note:* Amplify Gateway only supports providing API Keys as a header at the moment.
+* A Description of the API Key auth rule.
 
 Now the Virtual Service needs to be updated to use the API Key via the following API call
 
@@ -187,4 +187,4 @@ To test API Key Auth rule
 
 ### Via UI
 
-API Key Auth rule cannot be configured via the UI currently.
+API Key authentication can be configured via the Security tab and Inbound Authentication tab of the Virtual API details screen.
