@@ -22,7 +22,7 @@ To configure a backend connection timeout via API, call the following end-point
 PUT /management/v1alpha1/virtualapis/{virtualapiName}/virtualservices/{virtualserviceName}
 ```
 
-where {virtualapiName} is the name of the Virtual API you wish to configure and {virtualserviceName} is the name of its corresponding virtual service. If the following json payload is provided then the virtual service will be updated to wait 12 seconds to establish a connection to the backend. 
+where {virtualapiName} is the name of the Virtual API you wish to configure and {virtualserviceName} is the name of its corresponding virtual service. If the following json payload is provided then the virtual service will be updated to wait 12 seconds to establish a connection to the backend.
 
 ```json
 {
@@ -73,7 +73,7 @@ where {virtualapiName} is the name of the Virtual API you wish to configure and 
 In this example, the specification:
 
 * Has been updated to specify a connection timeout of 12 seconds.
-* All other values in the Virtual Service are unaltered. 
+* All other values in the Virtual Service are unaltered.
 
 To test backend connection timeout, release and deploy the Virtual API as outlined in [Release Tag a Virtual API](/docs/usage/ReleaseTag/index.html) and [Deploy a Virtual API](/docs/usage/Deploy/index.html)
 
