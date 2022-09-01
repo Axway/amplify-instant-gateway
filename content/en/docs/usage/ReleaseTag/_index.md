@@ -21,13 +21,13 @@ A Release Tag is used to create a versioned snapshot of the virtual api (for exa
 
 To create a Release Tag via API call the following end-point
 
-```markdown
+```none
 POST /management/v1alpha1/virtualapis/{virtualapiName}/releasetags
 ```
 
 where {virtualapiName} is the name of the virtual api. For example, music. If the followng json payload is provided then a new Release Tag called 'music-release-1-minor' will be created. This in turn will cause a new Virtual API Release named music-0.1.0 to be created. The Virtual API release created will depend on what Virtual API releases currently exist and the release type of the release tag. For example, if music-1.0.0 already exists then creating a new release tag with a release type of Major will create music-2.0.0.
 
-```json
+```yaml
 {
     "group": "management",
     "apiVersion": "v1alpha1",
@@ -48,7 +48,7 @@ In this example, the specification:
 
 To confirm a Virtual API Releae was created as a result of the creation of a release tag, call the following API
 
-```markdown
+```none
 GET /management/v1alpha1/virtualapireleases
 ```
 
@@ -56,7 +56,7 @@ GET /management/v1alpha1/virtualapireleases
 
 To create a Release tag via CLI, log on the Axway Central CLI and run the following command
 
-```markdown
+```none
 axway central create -f music-release-1-minor.yaml
 ```
 
@@ -84,7 +84,7 @@ In this example, the specification:
 
 To confirm a Virtual API Releae was created as a result of the creation of a release tag, use the the following CLI command
 
-```markdown
+```none
 axway central get virtualapireleases
 ```
 
